@@ -1,0 +1,255 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Responsive Image Gallery Web App (Android TV + Mobile Web)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a responsive gallery UI optimized for Android TV 10-foot viewing and Android phone/tablet touch use.",
+      "acceptanceCriteria": [
+        "UI is usable at TV distance: large focusable controls, readable typography, and clear focus outlines",
+        "Layout adapts to common breakpoints for TV, tablet, and phone without horizontal scrolling",
+        "All user-facing text is in English"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main app shell and responsive layout (header + gallery grid + viewer overlay) with TV-friendly sizing and touch-friendly spacing; ensure all user-facing text is English."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global styling for responsive typography/scales (TV/tablet/phone), focus outlines, and base page background; avoid horizontal scrolling by default."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure baseline document settings support TV/mobile viewing (language already set to English); add any minimal meta/body defaults needed for full-viewport responsive layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement gallery data flow to add images by URL or file upload and display them as grid thumbnails using React Query and the backend interface.",
+      "acceptanceCriteria": [
+        "Users can add an image by pasting a URL and it appears in the gallery grid after saving",
+        "Users can upload image files and they appear in the gallery grid after saving",
+        "Each image item in the gallery has at least: id, title (optional), source (URL or stored blob), and createdAt"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/gallery/api/galleryQueries.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for listing images and adding URL/uploaded images using the typed backend interface; for uploaded images, use the blob-storage ExternalBlob client to upload bytes and obtain a renderable direct URL. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/gallery/components/AddImagePanel.tsx",
+          "operation": "create",
+          "description": "Create an add-image UI that supports (1) paste URL + optional title and (2) upload JPG/PNG/WebP + optional title, then triggers React Query mutations and refreshes the grid; include upload progress handling via blob-storage ExternalBlob.withUploadProgress. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "operation": "create",
+          "description": "Create a responsive thumbnail grid rendering items returned by queries; for URL items render the URL; for blob items render ExternalBlob.getDirectURL() for efficient streaming/caching. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/gallery/types/galleryTypes.ts",
+          "operation": "create",
+          "description": "Define frontend-only view models that extend backend Image data with required UI fields (including createdAt in UI state) and normalize image source (URL vs direct blob URL) for thumbnail rendering."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AddImagePanel and GalleryGrid into the main layout and connect selection events to open the viewer starting at the selected image."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a full-screen image viewer with Next/Previous controls and TV-remote-friendly keyboard support.",
+      "acceptanceCriteria": [
+        "On-screen Next/Previous controls work via click/tap and keyboard (ArrowLeft/ArrowRight)",
+        "Back/Escape exits the viewer to the gallery grid",
+        "The currently viewed image index is visible (e.g., “3 / 20”)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "operation": "create",
+          "description": "Create a full-screen viewer overlay with large on-screen Next/Previous controls, an index indicator (e.g., '3 / 20'), and keyboard handling for ArrowLeft/ArrowRight and Escape/Back to close; use shadcn-ui Dialog (or equivalent) to support modal semantics and focus management. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/viewer/hooks/useViewerKeyboard.ts",
+          "operation": "create",
+          "description": "Implement a hook to centralize remote-friendly keyboard handling (Arrow keys, Enter/OK for primary actions if applicable, Escape/Back close) and prevent conflicts while the viewer is open."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire ImageViewerModal to open from GalleryGrid selection, pass current image list + active index, and restore focus to the last focused grid item on close."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement slideshow mode in the viewer with Play/Pause and a configurable interval.",
+      "acceptanceCriteria": [
+        "User can start slideshow from the viewer and pause/resume it",
+        "User can change the slideshow interval (at least: 3s, 5s, 10s)",
+        "During slideshow, images advance automatically and loop or stop at the end (choose one behavior and apply consistently)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/viewer/hooks/useSlideshow.ts",
+          "operation": "create",
+          "description": "Create slideshow state management (playing, interval selection, tick scheduling) that advances the active image and applies a consistent looping behavior across the list."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/SlideshowControls.tsx",
+          "operation": "create",
+          "description": "Add viewer controls for Play/Pause and interval selection (3s/5s/10s) using shadcn-ui Button and Select/DropdownMenu to remain keyboard-friendly. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "operation": "modify",
+          "description": "Integrate slideshow controls and ensure manual Next/Previous navigation resets/continues slideshow behavior consistently (e.g., continue playing from the newly selected image)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add zoom in/out/reset with smooth scaling plus panning by drag and by keyboard when zoomed.",
+      "acceptanceCriteria": [
+        "Zoom In/Out buttons change the scale with defined min/max limits",
+        "Reset returns the image to “fit to screen” (or equivalent) with centered position",
+        "When zoomed in, user can pan the image via drag (mouse/touch) and via keyboard (arrow keys) in viewer mode"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/viewer/hooks/useZoomPan.ts",
+          "operation": "create",
+          "description": "Implement zoom/pan state (scale with min/max, translate offsets, reset-to-fit behavior) and pointer/touch drag panning; add keyboard panning with Arrow keys when zoomed."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/ZoomControls.tsx",
+          "operation": "create",
+          "description": "Create large Zoom In/Zoom Out/Reset controls suitable for TV using shadcn-ui Button and optional Slider for scale display/adjustment. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "operation": "modify",
+          "description": "Apply transforms from useZoomPan to the displayed image with smooth transitions and ensure zoom controls and drag/keyboard panning are active only in viewer mode."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add a viewer 'more options' menu with Fit/Actual toggle, Rotate Left/Right, and optional image info.",
+      "acceptanceCriteria": [
+        "More options are accessible via an on-screen button and via keyboard",
+        "Rotate controls update the displayed image orientation immediately",
+        "Fit/Actual size toggles update the transform behavior consistently"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+          "operation": "create",
+          "description": "Create a viewer options menu accessible via an on-screen button and keyboard, offering Fit to Screen / Actual Size, Rotate Left/Right (90°), and optional image info; use shadcn-ui DropdownMenu or Menubar for keyboard-friendly navigation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+          "operation": "create",
+          "description": "Add viewer transform state for rotation (0/90/180/270) and fit-vs-actual sizing mode, coordinating with zoom reset/fit behavior for consistent transforms."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "operation": "modify",
+          "description": "Wire MoreOptionsMenu actions into the viewer transform pipeline and ensure the toggles immediately update the rendered image."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Ensure TV-friendly accessibility and focus management across all interactive elements, including modals and menus.",
+      "acceptanceCriteria": [
+        "All buttons/menus can be operated without a mouse (keyboard-only)",
+        "Focus is trapped appropriately in modal/menus and restored on close",
+        "Focusable elements show a clear focus ring/outline on TV"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add strong, high-contrast focus-visible styles sized for TV viewing (clear outline/ring) and ensure focus is visually obvious on dark backgrounds."
+        },
+        {
+          "path": "frontend/src/features/a11y/focus.ts",
+          "operation": "create",
+          "description": "Add shared focus utilities (e.g., remember/restore focus, focus first element in viewer, optional roving tab index helpers for grid navigation) to support remote-friendly interactions."
+        },
+        {
+          "path": "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "operation": "modify",
+          "description": "Ensure thumbnails and primary actions are keyboard reachable with sensible tab order; add visible focus handling and optional arrow-key navigation within the grid for TV usability."
+        },
+        {
+          "path": "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "operation": "modify",
+          "description": "Ensure focus is trapped while the viewer is open (and within menus when open) and restored to the triggering thumbnail when closed; ensure keyboard-only operation for all viewer actions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply a coherent, high-contrast living-room theme across the app while avoiding blue/purple as dominant colors.",
+      "acceptanceCriteria": [
+        "Theme is consistent across gallery grid, viewer, menus, and settings",
+        "Controls are high-contrast and readable on TV",
+        "Dominant palette is not blue/purple"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define theme tokens (background/foreground/primary/accent) using a dark neutral palette with non-blue/non-purple accents (e.g., charcoal + warm amber/green) and apply consistent typography and spacing defaults."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend Tailwind theme tokens as needed to support the chosen palette and consistent component styling across grid/viewer/menus without introducing a blue/purple-dominant scheme."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply theme classes consistently across header, gallery grid, viewer overlay, and controls to ensure high contrast and readability on TV."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add generated logo and background texture assets under frontend/public/assets/generated and render them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and referenced by the UI",
+        "Assets load without requiring backend image routing"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/gallery-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset at the exact path frontend/public/assets/generated/gallery-logo.dim_512x512.png for in-app branding."
+        },
+        {
+          "path": "frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated static background texture asset at the exact path frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png for subtle TV-friendly background styling."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Reference frontend/public/assets/generated/gallery-logo.dim_512x512.png in the header branding and apply frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png as an optional app background layer without any backend routing."
+        }
+      ]
+    }
+  ]
+}

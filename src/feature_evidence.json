@@ -1,0 +1,194 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-an-image-gallery-application-ui-that-works-well-on-android-tv-browsers-and-on-android-phones-tablets-android-10-with-a-responsive-layout-that-supports-both-10-foot-tv-viewing-and-touch-handheld-use",
+      "featureTitle": "Implement an image gallery application UI that works well on Android TV browsers and on Android phones/tablets (Android 10+), with a responsive layout that supports both 10-foot (TV) viewing and touch/handheld use.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-a-gallery-data-flow-that-lets-users-populate-the-gallery-by-adding-images-via-direct-url-and-by-uploading-image-files-jpg-png-webp-from-the-browser-then-display-them-as-thumbnails-in-a-grid-view",
+      "featureTitle": "Provide a gallery data flow that lets users populate the gallery by adding images via direct URL and by uploading image files (JPG/PNG/WebP) from the browser, then display them as thumbnails in a grid view.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/gallery/components/AddImagePanel.tsx",
+        "frontend/src/features/gallery/components/GalleryGrid.tsx",
+        "frontend/src/features/gallery/types/galleryTypes.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-full-screen-image-viewer-with-next-previous-navigation-controls-and-remote-friendly-keyboard-support-d-pad-arrow-keys-enter-ok-back-escape",
+      "featureTitle": "Implement a full-screen image viewer with Next/Previous navigation controls and remote-friendly keyboard support (D-pad/arrow keys, Enter/OK, Back/Escape).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/features/viewer/hooks/useViewerKeyboard.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-slideshow-mode-with-configurable-interval-and-controls-to-play-pause-slideshow-must-advance-through-images-and-integrate-with-next-previous-manual-navigation-should-reset-continue-logically",
+      "featureTitle": "Add slideshow mode with configurable interval and controls to Play/Pause; slideshow must advance through images and integrate with Next/Previous (manual navigation should reset/continue logically).",
+      "files": [
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/features/viewer/components/SlideshowControls.tsx",
+        "frontend/src/features/viewer/hooks/useSlideshow.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-zoom-controls-zoom-in-zoom-out-reset-in-the-viewer-with-smooth-scaling-and-panning-dragging-when-zoomed-support-tv-remote-and-touch-mouse-interactions",
+      "featureTitle": "Implement zoom controls (Zoom In, Zoom Out, Reset) in the viewer with smooth scaling and panning/dragging when zoomed; support TV remote and touch/mouse interactions.",
+      "files": [
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/features/viewer/components/ZoomControls.tsx",
+        "frontend/src/features/viewer/hooks/useZoomPan.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-more-options-menu-in-the-viewer-with-at-least-fit-to-screen-actual-size-toggle-rotate-left-right-90-and-optional-image-info-dimensions-source-type-createdat",
+      "featureTitle": "Add “more options” menu in the viewer with at least: Fit to Screen / Actual Size toggle, Rotate Left/Right (90°), and optional image info (dimensions, source type, createdAt).",
+      "files": [
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+        "frontend/src/features/viewer/hooks/useImageTransforms.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-tv-friendly-accessibility-and-focus-management-all-interactive-elements-must-be-reachable-by-keyboard-navigation-with-visible-focus-states-and-sensible-tab-order",
+      "featureTitle": "Ensure TV-friendly accessibility and focus management: all interactive elements must be reachable by keyboard navigation, with visible focus states and sensible tab order.",
+      "files": [
+        "frontend/src/features/a11y/focus.ts",
+        "frontend/src/features/gallery/components/GalleryGrid.tsx",
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-visual-theme-across-the-app-colors-typography-spacing-component-style-suitable-for-a-living-room-gallery-experience-avoid-blue-purple-as-dominant-colors",
+      "featureTitle": "Apply a coherent visual theme across the app (colors, typography, spacing, component style) suitable for a living-room gallery experience; avoid blue/purple as dominant colors.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-assets-logo-and-a-subtle-background-texture-and-render-them-from-frontend-public-assets-generated-within-the-app-ui-e-g-header-branding-and-optional-background",
+      "featureTitle": "Add generated static assets (logo and a subtle background texture) and render them from frontend/public/assets/generated within the app UI (e.g., header branding and optional background).",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

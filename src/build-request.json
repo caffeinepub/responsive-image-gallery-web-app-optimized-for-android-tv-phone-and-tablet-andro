@@ -1,0 +1,203 @@
+{
+  "kind": "build_request",
+  "title": "Responsive Image Gallery Web App Optimized for Android TV, Phone, and Tablet (Android 10+)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement an image gallery application UI that works well on Android TV browsers and on Android phones/tablets (Android 10+), with a responsive layout that supports both 10-foot (TV) viewing and touch/handheld use.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create android tv app for  image gallery app with slide show, next previous, zoom in, zoomout and more options .\nCompatible withe android 10 and above\nCompatible with  android phone and tablet"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI is usable at TV distance: large focusable controls, readable typography, and clear focus outlines",
+        "Layout adapts to common breakpoints for TV, tablet, and phone without horizontal scrolling",
+        "All user-facing text is in English"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Provide a gallery data flow that lets users populate the gallery by adding images via direct URL and by uploading image files (JPG/PNG/WebP) from the browser, then display them as thumbnails in a grid view.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create android tv app for  image gallery app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can add an image by pasting a URL and it appears in the gallery grid after saving",
+        "Users can upload image files and they appear in the gallery grid after saving",
+        "Each image item in the gallery has at least: id, title (optional), source (URL or stored blob), and createdAt"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement a full-screen image viewer with Next/Previous navigation controls and remote-friendly keyboard support (D-pad/arrow keys, Enter/OK, Back/Escape).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "slide show, next previous"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On-screen Next/Previous controls work via click/tap and keyboard (ArrowLeft/ArrowRight)",
+        "Back/Escape exits the viewer to the gallery grid",
+        "The currently viewed image index is visible (e.g., “3 / 20”)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add slideshow mode with configurable interval and controls to Play/Pause; slideshow must advance through images and integrate with Next/Previous (manual navigation should reset/continue logically).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "slide show"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can start slideshow from the viewer and pause/resume it",
+        "User can change the slideshow interval (at least: 3s, 5s, 10s)",
+        "During slideshow, images advance automatically and loop or stop at the end (choose one behavior and apply consistently)"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement zoom controls (Zoom In, Zoom Out, Reset) in the viewer with smooth scaling and panning/dragging when zoomed; support TV remote and touch/mouse interactions.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "zoom in, zoomout"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Zoom In/Out buttons change the scale with defined min/max limits",
+        "Reset returns the image to “fit to screen” (or equivalent) with centered position",
+        "When zoomed in, user can pan the image via drag (mouse/touch) and via keyboard (arrow keys) in viewer mode"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add “more options” menu in the viewer with at least: Fit to Screen / Actual Size toggle, Rotate Left/Right (90°), and optional image info (dimensions, source type, createdAt).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "and more options"
+        ]
+      },
+      "acceptanceCriteria": [
+        "More options are accessible via an on-screen button and via keyboard",
+        "Rotate controls update the displayed image orientation immediately",
+        "Fit/Actual size toggles update the transform behavior consistently"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create Motoko backend endpoints to store and retrieve gallery items, supporting both URL-based images and uploaded image blobs, and expose a stable API used by the React app (React Query).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "image gallery app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend supports: create image item, list image items, get image item, delete image item",
+        "Uploaded image blobs can be retrieved by the frontend for rendering (e.g., via a query returning bytes or data URL parts)",
+        "State persists across canister upgrades without requiring a migration in this initial stage"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Ensure TV-friendly accessibility and focus management: all interactive elements must be reachable by keyboard navigation, with visible focus states and sensible tab order.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create android tv app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All buttons/menus can be operated without a mouse (keyboard-only)",
+        "Focus is trapped appropriately in modal/menus and restored on close",
+        "Focusable elements show a clear focus ring/outline on TV"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a coherent visual theme across the app (colors, typography, spacing, component style) suitable for a living-room gallery experience; avoid blue/purple as dominant colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create android tv app for  image gallery app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Theme is consistent across gallery grid, viewer, menus, and settings",
+        "Controls are high-contrast and readable on TV",
+        "Dominant palette is not blue/purple"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add generated static assets (logo and a subtle background texture) and render them from frontend/public/assets/generated within the app UI (e.g., header branding and optional background).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create android tv app for  image gallery app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are present under frontend/public/assets/generated and referenced by the UI",
+        "Assets load without requiring backend image routing"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not implement a native Android APK; deliver as a web application optimized for Android TV/phone/tablet browsers.",
+    "Backend must remain a single Motoko actor in backend/main.mo; do not introduce additional backend services.",
+    "Do not edit files under frontend immutablePaths; compose existing UI components instead."
+  ],
+  "nonGoals": [
+    "Direct access to the device’s local photo gallery/storage without user upload (no platform-native media permissions).",
+    "Real-time sync, chat, push notifications, or third-party authentication beyond Internet Identity.",
+    "External database integration or third-party cloud storage."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimalist gallery app logo, monochrome-friendly, rounded-square mark (gallery-logo.dim_512x512.png)",
+      "Subtle dark textured background pattern suitable for TV UI (gallery-bg-texture.dim_1920x1080.png)"
+    ],
+    "edits": []
+  }
+}

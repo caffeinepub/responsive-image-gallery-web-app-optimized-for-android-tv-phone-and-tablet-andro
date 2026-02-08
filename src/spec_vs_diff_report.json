@@ -1,0 +1,116 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-04T15:48:18.850Z",
+  "summary": "Diff adds a Motoko backend actor and a React/Tailwind frontend implementing a responsive gallery grid, URL + upload add flows, and a full-screen viewer with navigation, slideshow interval UI, zoom controls, rotation, and a “More” menu. Several backend API and persistence requirements, and some viewer behaviors (fit/actual, focus trapping, touch pan) are not evidenced in the diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Each image item includes at least: id, title (optional), source (URL or stored blob), and createdAt.",
+      "reason": "Backend Image type contains id/title/imageType but no createdAt field; frontend synthesizes createdAt as `new Date()` on mapping, which does not represent stored creation time.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/features/gallery/types/galleryTypes.ts"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "When zoomed in, user can pan the image via drag (mouse/touch) and via keyboard (arrow keys) in viewer mode.",
+      "reason": "Mouse dragging and keyboard arrow-key panning are implemented, but there is no touch/pointer event handling shown (e.g., onTouchStart/onPointerDown), so touch dragging on phones/tablets is not evidenced.",
+      "evidence": [
+        "frontend/src/features/viewer/hooks/useZoomPan.ts",
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Fit to Screen / Actual Size toggle updates the transform behavior consistently.",
+      "reason": "State `fitMode` is toggled in `useImageTransforms`, and menu calls `onToggleFitMode`, but the viewer’s rendered `<img>` uses only `translate/scale/rotate` and `object-contain`; no logic shown that changes sizing/transform based on `fitMode`.",
+      "evidence": [
+        "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+        "frontend/src/features/viewer/components/MoreOptionsMenu.tsx"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Backend supports: create image item, list image items, get image item, delete image item.",
+      "reason": "Backend provides addImage/addUrlImage/addUploadedImage (create), getImage (get), getAllImages (list) but no delete endpoint is present.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "State persists across canister upgrades without requiring a migration in this initial stage.",
+      "reason": "State is held in `var nextId` and `let imageMap = Map.empty...` with no `stable` variables or preupgrade/postupgrade handling shown, so upgrade persistence is not evidenced.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Focus is trapped appropriately in modal/menus and restored on close.",
+      "reason": "Utilities for rememberFocus/trapFocus exist, but the viewer modal implementation shown does not call them or otherwise demonstrate focus trapping/restoration.",
+      "evidence": [
+        "frontend/src/features/a11y/focus.ts",
+        "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Generated images are present under frontend/public/assets/generated and referenced by the UI.",
+      "reason": "UI references the assets by URL, but the diff summary does not show the actual image files under `frontend/public/assets/generated` (some files are omitted/truncated). Presence cannot be confirmed from provided diff summary.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Header.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Footer branding/link ‘Built with caffeine.ai’ (and heart icon).",
+      "reason": "Not requested in any REQ/AC; adds third-party branding content to the UI.",
+      "evidence": [
+        "frontend/src/components/Footer.tsx"
+      ]
+    },
+    {
+      "description": "Backend endpoint `getImageBlobs()` returning a list of blobs.",
+      "reason": "Not explicitly requested (REQ-7 asks for create/list/get/delete; blob retrieval is mentioned generally but not specifically a bulk endpoint). This may be extra beyond the stated API surface.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/features/a11y/focus.ts",
+    "frontend/src/features/gallery/components/AddImagePanel.tsx",
+    "frontend/src/features/gallery/components/GalleryGrid.tsx",
+    "frontend/src/features/gallery/types/galleryTypes.ts",
+    "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+    "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+    "frontend/src/features/viewer/components/SlideshowControls.tsx",
+    "frontend/src/features/viewer/components/ZoomControls.tsx",
+    "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+    "frontend/src/features/viewer/hooks/useSlideshow.ts",
+    "frontend/src/features/viewer/hooks/useViewerKeyboard.ts",
+    "frontend/src/features/viewer/hooks/useZoomPan.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

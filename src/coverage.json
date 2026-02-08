@@ -1,0 +1,279 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-04T15:48:18.890Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 10,
+    "implemented": 9,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement an image gallery application UI that works well on Android TV browsers and on Android phones/tablets (Android 10+), with a responsive layout that supports both 10-foot (TV) viewing and touch/handheld use.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/index.css",
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Add generated static assets (logo and a subtle background texture) and render them from frontend/public/assets/generated within the app UI (e.g., header branding and optional background).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/gallery-logo.dim_512x512.png",
+          "frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/gallery-logo.dim_512x512.png",
+          "frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Provide a gallery data flow that lets users populate the gallery by adding images via direct URL and by uploading image files (JPG/PNG/WebP) from the browser, then display them as thumbnails in a grid view.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/gallery/api/galleryQueries.ts",
+          "frontend/src/features/gallery/components/AddImagePanel.tsx",
+          "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "frontend/src/features/gallery/types/galleryTypes.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/gallery/components/AddImagePanel.tsx",
+          "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "frontend/src/features/gallery/types/galleryTypes.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement a full-screen image viewer with Next/Previous navigation controls and remote-friendly keyboard support (D-pad/arrow keys, Enter/OK, Back/Escape).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "frontend/src/features/viewer/hooks/useViewerKeyboard.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+          "frontend/src/features/viewer/hooks/useViewerKeyboard.ts",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add slideshow mode with configurable interval and controls to Play/Pause; slideshow must advance through images and integrate with Next/Previous (manual navigation should reset/continue logically).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/viewer/hooks/useSlideshow.ts",
+          "frontend/src/features/viewer/components/SlideshowControls.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/viewer/hooks/useSlideshow.ts",
+          "frontend/src/features/viewer/components/SlideshowControls.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement zoom controls (Zoom In, Zoom Out, Reset) in the viewer with smooth scaling and panning/dragging when zoomed; support TV remote and touch/mouse interactions.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/viewer/hooks/useZoomPan.ts",
+          "frontend/src/features/viewer/components/ZoomControls.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/viewer/hooks/useZoomPan.ts",
+          "frontend/src/features/viewer/components/ZoomControls.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Add “more options” menu in the viewer with at least: Fit to Screen / Actual Size toggle, Rotate Left/Right (90°), and optional image info (dimensions, source type, createdAt).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+          "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+          "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Create Motoko backend endpoints to store and retrieve gallery items, supporting both URL-based images and uploaded image blobs, and expose a stable API used by the React app (React Query).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Ensure TV-friendly accessibility and focus management: all interactive elements must be reachable by keyboard navigation, with visible focus states and sensible tab order.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/features/a11y/focus.ts",
+          "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/features/a11y/focus.ts",
+          "frontend/src/features/gallery/components/GalleryGrid.tsx",
+          "frontend/src/features/viewer/components/ImageViewerModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Apply a coherent visual theme across the app (colors, typography, spacing, component style) suitable for a living-room gallery experience; avoid blue/purple as dominant colors.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/gallery-bg-texture.dim_1920x1080.png",
+    "frontend/public/assets/generated/gallery-logo.dim_512x512.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/features/a11y/focus.ts",
+    "frontend/src/features/gallery/components/AddImagePanel.tsx",
+    "frontend/src/features/gallery/components/GalleryGrid.tsx",
+    "frontend/src/features/gallery/types/galleryTypes.ts",
+    "frontend/src/features/viewer/components/ImageViewerModal.tsx",
+    "frontend/src/features/viewer/components/MoreOptionsMenu.tsx",
+    "frontend/src/features/viewer/components/SlideshowControls.tsx",
+    "frontend/src/features/viewer/components/ZoomControls.tsx",
+    "frontend/src/features/viewer/hooks/useImageTransforms.ts",
+    "frontend/src/features/viewer/hooks/useSlideshow.ts",
+    "frontend/src/features/viewer/hooks/useViewerKeyboard.ts",
+    "frontend/src/features/viewer/hooks/useZoomPan.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component that orchestrates the gallery grid, add image panel, and full-screen image viewer with state management for viewer open/close and active image index.",
+  "frontend/src/components/Header.tsx": "Header component displaying the gallery logo and title with responsive sizing for TV, tablet, and phone viewports.",
+  "frontend/src/components/Footer.tsx": "Footer component with copyright notice and caffeine.ai attribution link, styled for TV-friendly readability.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching all images, individual images, and mutations for adding URL-based and uploaded images with proper cache invalidation and toast notifications.",
+  "frontend/src/features/gallery/types/galleryTypes.ts": "Type definitions and utility functions for converting backend Image types to frontend GalleryImage view models with display URLs.",
+  "frontend/src/features/gallery/components/AddImagePanel.tsx": "Tabbed interface for adding images via URL or file upload with progress tracking, form validation, and responsive TV-friendly controls.",
+  "frontend/src/features/gallery/components/GalleryGrid.tsx": "Responsive grid layout displaying image thumbnails with keyboard navigation support (arrow keys) and focus management for TV remote control.",
+  "frontend/src/features/viewer/components/ImageViewerModal.tsx": "Full-screen image viewer with navigation controls, slideshow, zoom/pan, rotation, and comprehensive keyboard support for TV remotes.",
+  "frontend/src/features/viewer/components/SlideshowControls.tsx": "Dropdown menu component for selecting slideshow interval (3s, 5s, 10s) with TV-friendly button sizing.",
+  "frontend/src/features/viewer/components/ZoomControls.tsx": "Zoom in/out/reset controls with visual scale percentage display and disabled states for min/max zoom limits.",
+  "frontend/src/features/viewer/components/MoreOptionsMenu.tsx": "Dropdown menu providing rotation controls, fit/actual size toggle, and image information display.",
+  "frontend/src/features/viewer/hooks/useViewerKeyboard.ts": "Custom hook managing keyboard shortcuts for viewer navigation, zoom, and close actions with conditional behavior based on zoom state.",
+  "frontend/src/features/viewer/hooks/useSlideshow.ts": "Custom hook managing slideshow play/pause state and configurable interval timing.",
+  "frontend/src/features/viewer/hooks/useZoomPan.ts": "Custom hook managing zoom scale, pan position, mouse drag, wheel zoom, and keyboard panning with bounds checking.",
+  "frontend/src/features/viewer/hooks/useImageTransforms.ts": "Custom hook managing image rotation (90° increments) and fit/actual size mode with reset functionality.",
+  "frontend/src/features/a11y/focus.ts": "Accessibility utilities for focus management including remember/restore focus, focus first element, and focus trap for modal dialogs.",
+  "frontend/src/index.css": "Global styles with dark theme OKLCH color system optimized for TV viewing, custom focus-visible styles with prominent rings, and scrollbar customization.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the theme with warm amber/gold accent colors (avoiding blue/purple), TV-specific font sizes, and enhanced focus shadow utilities."
+}
